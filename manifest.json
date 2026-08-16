@@ -1,7 +1,7 @@
 {
     "id": "obsidian-of-mist",
     "name": "Obsidian of Mist",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "minAppVersion": "1.0.0",
     "description": "Provides tools and features for mist-powered TTRPGs. Currently supports Legend in the Mist, but Ciry of Mist and :Otherscape support is planned.",
     "author": "Seedback",
