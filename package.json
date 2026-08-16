@@ -1,6 +1,6 @@
 {
   "name": "obsidian-of-mist",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Provides tools and features for mist-powered TTRPGs. Currently supports Legend in the Mist, but Ciry of Mist and :Otherscape support is planned.",
   "main": "main.js",
   "scripts": {
