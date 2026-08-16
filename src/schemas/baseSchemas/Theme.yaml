@@ -1,0 +1,249 @@
+# JSON Schema in YAML format for Mist-powered Theme
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.theme.schema.json-1.0.0
+title: Mist-powered Theme
+description: Schema for validating Mist-powered Theme Data
+
+type: object
+allOf:
+  - $ref: mist.common-element-fields.schema.json-1.0.0
+  - type: object
+    properties:
+      might:
+        type: string
+        description: |
+          Defines the look of the theme. Available values depend on the system.
+          All systems accept "Undefined", "Default", "story" and no value for giving a grey (by default) theme with no might mentioned.
+          City: mythos, logos
+          Otherscape: self, mythos, noise
+          Legend: origin, adventure, greatness
+          Note: alias of type
+      type:
+        type: string
+        description: |
+          Defines the look of the theme. Available values depend on the system.
+          All systems accept "Undefined", "Default" and no value for giving a grey (by default) theme with no type mentioned.
+          City: Mythos, Logos
+          Otherscape: Self, Mythos, Noise
+          Legend: Origin, Adventure, Greatness
+          Note: alias of might
+      themebook:
+        type: string
+        description: |
+          The themebook used to make this theme.
+          Any value is allowed here to allow for custom theme books, since the specific themebook doesn't carry with it a need for special styling.
+      title:
+        type: string
+        description: |
+          The title of the theme.
+          Note: Only used in City of Mist. The other systems use the first powertag for the same purpose.
+      tags:
+        type: array
+        items:
+          allOf:
+            - $ref: mist.tag.schema.json-1.0.0
+            - properties:
+                type:
+                  enum:
+                    - power
+                    - weakness
+                    - story
+        description: |
+          A list over tags in the theme, requires full tag object.
+          Note. Only accepts power, weakness and story tags.
+          Note: This can be used in combination with the specific tag-lists.
+      power-tags:
+        type: array
+        items:
+          anyOf:
+            - type: string
+            - $ref: mist.simplified-tag.schema.json-1.0.0
+            - type: object
+              minProperties: 1
+              maxProperties: 1
+              propertyNames:
+                minLength: 1
+              additionalProperties:
+                type: object
+                properties:
+                  question:
+                    $ref: mist.question-letter.schema.json-1.0.0
+                  burned:
+                    type: boolean
+        description: |
+          A list over power-tag objects.
+          Note: This can be used in combination with the `tags` list.
+      weakness-tags:
+        type: array
+        items:
+          anyOf:
+            - type: string
+            - $ref: mist.simplified-tag.schema.json-1.0.0
+            - type: object
+              minProperties: 1
+              maxProperties: 1
+              propertyNames:
+                minLength: 1
+              additionalProperties:
+                type: object
+                properties:
+                  question:
+                    $ref: mist.question-letter.schema.json-1.0.0
+                  burned:
+                    type: boolean
+        description: |
+          A list over weakness-tag objects.
+          Note: This can be used in combination with the `tags` list.
+      story-tags:
+        type: array
+        items:
+          anyOf:
+            - type: string
+            - $ref: mist.simplified-tag.schema.json-1.0.0
+            - type: object
+              minProperties: 1
+              maxProperties: 1
+              propertyNames:
+                minLength: 1
+              additionalProperties:
+                type: object
+                properties:
+                  question:
+                    $ref: mist.question-letter.schema.json-1.0.0
+                  burned:
+                    type: boolean
+        description: |
+          A list over story-tag objects.
+          Note: This can be used in combination with the `tags` list.
+          Note: These will display as power tags by default unless the styling is changed with Style Settings
+      identity:
+        type: string
+        description: |
+          The Identity of the theme.
+          Note: Alias of mystery, ritual, itch and quest. Only one is accepted at once.
+      mystery:
+        type: string
+        description: |
+          The Mystery of the theme.
+          Note: Alias of identity, ritual, itch and quest. Only one is accepted at once.
+      ritual:
+        type: string
+        description: |
+          The Ritual of the theme.
+          Note: Alias of identity, mystery, itch and quest. Only one is accepted at once.
+      itch:
+        type: string
+        description: |
+          The Itch of the theme.
+          Note: Alias of identity, mystery, ritual and quest. Only one is accepted at once.
+      quest:
+        type: string
+        description: |
+          The Quest of the theme.
+          Note: Alias of identity, mystery, ritual and itch. Only one is accepted at once.
+      attention:
+        type: integer
+        description: |
+          The number of attention points this theme has.
+          Note: Alias of upgrade and improve
+      crack:
+        type: integer
+        description: |
+          The number of crack points this theme has.
+          Note: Alias of fade, decay and abandon
+      fade:
+        type: integer
+        description: |
+          The number of fade points this theme has.
+          Note: Alias of crack, decay and abandon
+      upgrade:
+        type: integer
+        description: |
+          The number of upgrade points this theme has.
+          Note: Alias of attention and improve
+      decay:
+        type: integer
+        description: |
+          The number of decay points this theme has.
+          Note: Alias of crack, fade and abandon
+      abandon:
+        type: integer
+        description: |
+          The number of abandon points this theme has.
+          Note: Alias of crack, fade and decay
+      improve:
+        type: integer
+        description: |
+          The number of improve points this theme has.
+          Note: Alias of attention and upgrade
+      milestone:
+        type: integer
+        description: |
+          The number of points points this theme has.
+          Note: Only used for Legend in the Mist themes
+      slow-and-steady:
+        type: boolean
+        description: |
+          Defines wether the veteran improvement slow or steady (or Diligent Drudge in Legend in the mist)
+          This will make the theme have 5 tracker boxes per tracker
+
+    allOf:
+      # Allow zero or one identity-style property
+      - oneOf:
+          - not:
+              anyOf:
+                - required: [identity]
+                - required: [mystery]
+                - required: [ritual]
+                - required: [itch]
+                - required: [quest]
+
+          - required: [identity]
+          - required: [mystery]
+          - required: [ritual]
+          - required: [itch]
+          - required: [quest]
+
+      # Allow zero or one of might and type
+      - oneOf:
+          - not:
+              anyOf:
+                - required: [might]
+                - required: [type]
+
+          - required: [might]
+          - required: [type]
+
+      # Tracker properties use different names between systems.
+      # Aliases may be freely mixed, but only one alias for each tracker may be defined.
+      # City:       attention,  [crack, fade]
+      # Otherscape: upgrade,    decay
+      # Legend:     improve,    abandon,        milestone
+      - oneOf:
+          - not:
+              anyOf:
+                - required: [attention]
+                - required: [upgrade]
+                - required: [improve]
+          - required: [attention]
+          - required: [upgrade]
+          - required: [improve]
+      - oneOf:
+          - not:
+              anyOf:
+                - required: [crack]
+                - required: [fade]
+                - required: [decay]
+                - required: [abandon]
+          - required: [crack]
+          - required: [fade]
+          - required: [decay]
+          - required: [abandon]
+      # A rule for milestone exists, even though it doesn't have any aliases,
+      #   in case a future mist-powered system has a milestone for it,
+      #   this makes it easier to add.
+      - oneOf:
+          - not:
+              anyOf:
+                - required: [milestone]
+          - required: [milestone]

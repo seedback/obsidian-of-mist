@@ -1,0 +1,15 @@
+# JSON Schema in YAML format for Mist-powered EvaluatedTag
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.evaluated-tag.schema.json-1.0.0
+title: Mist-powered EvaluatedTag
+description: Schema for validating Mist-powered EvaluatedTag Data
+
+type: object
+allOf:
+  - $ref: mist.tag.schema.json-1.0.0
+  
+unevaluatedProperties:
+  const: false
+  errorMessage: |
+    Tag object must not have extra properties.
+    Allowed properties: text, type, question, burned, tier, sub-tier, system.

@@ -1,0 +1,19 @@
+# JSON Schema in YAML format for Mist-powered Common Element Fields
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.common-element-fields.schema.json-1.0.0
+title: Mist-powered Common Element Fields
+description: Schema for validating Mist-powered Common Element Fields Data
+
+type: object
+properties: 
+  system:
+    type: string
+    enum:
+      - city
+      - otherscape
+      - legend
+      - ""
+    description: |
+      Decides the style used by the theme.
+      Supported values are: "city", "otherscape" and "legend"
+      Anything else (including empty or not defined) will lead to using the "Default System" setting in the plugin settings.

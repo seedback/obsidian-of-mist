@@ -1,0 +1,18 @@
+# JSON Schema in YAML format for Mist-powered QuestionLetter
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.question-letter.schema.json-1.0.0
+title: Mist-powered QuestionLetter
+description: Schema for validating Mist-powered QuestionLetter Data
+
+allOf:
+  - transform:
+      - toUpperCase
+  - type: string
+    minLength: 1
+    maxLength: 1
+    pattern: '^[A-Z]$'
+    errorMessage:
+      type: QuestionLetter must be a string.
+      minLength: QuestionLetter must contain exactly one letter.
+      maxLength: QuestionLetter must contain exactly one letter.
+      pattern: QuestionLetter must be a letter from A to Z.

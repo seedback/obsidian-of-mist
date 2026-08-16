@@ -1,0 +1,6 @@
+@use '@styles/fonts/pt-serif.scss';
+.preamble{
+  font-size: var(--h4-size);
+  font-family: "PT Serif", serif;
+  max-width: calc(var(--file-line-width) / 2);
+}

@@ -1,0 +1,50 @@
+# JSON Schema in YAML format for Mist-powered Tag
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.tag.schema.json-1.0.0
+title: Mist-powered Tag
+description: Schema for validating Mist-powered Tag Data
+
+type: object
+allOf:
+  - $ref: mist.simplified-tag.schema.json-1.0.0
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - power
+          - weakness
+          - status
+          - spectrum
+          - limit
+          - story
+        default: story
+        description: |
+          The type of the tag.
+          Valid values are: power, weakness, status, spectrum, limit, story.
+          Note: If no type is defined, it defaults to "story" which again defaults to "power" unless the styling has been changed in the StyleSettings plugin or a custom css snippet.
+        errorMessage:
+          type: Tag type must be a string.
+          enum: Tag type must be power, weakness, status, spectrum, limit, or story.
+    
+    allOf:
+      - if:
+          properties: 
+            type:
+              enum:
+                - status
+                - spectrum
+                - limit
+          required:
+            - type
+        else:
+          properties: 
+            tier: false
+            sub-tier: false
+
+unevaluatedProperties:
+  const: false
+  errorMessage: |
+    Tag object must not have extra properties.
+    Allowed properties: text, type, question, burned, tier, sub-tier, system.
+

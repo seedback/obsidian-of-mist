@@ -1,0 +1,47 @@
+{
+  "name": "obsidian-of-mist",
+  "version": "0.0.1",
+  "description": "Provides tools and features for mist-powered TTRPGs. Currently supports Legend in the Mist, but Ciry of Mist and :Otherscape support is planned.",
+  "main": "main.js",
+  "scripts": {
+    "build": "npm run check && npm run lint && vite build --mode production",
+    "check": "vue-tsc -p tsconfig.app.json --noEmit --skipLibCheck",
+    "dev": "vite build --mode development",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.5.41"
+  },
+  "devDependencies": {
+    "@dword-design/eslint-plugin-import-alias": "^8.1.8",
+    "@rollup/plugin-yaml": "^5.0.0",
+    "@types/node": "^26.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/parser": "^8.67.0",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vitejs/plugin-vue-jsx": "^5.1.6",
+    "@vue/tsconfig": "^0.9.1",
+    "ajv": "^8.20.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-keywords": "^5.1.0",
+    "eslint": "^10.8.1",
+    "eslint-plugin-vue": "^10.10.0",
+    "jsonschema": "^1.5.0",
+    "obsidian": "^1.13.1",
+    "oxlint": "^1.78.0",
+    "prettier-eslint": "^17.1.1",
+    "sass": "^1.102.0",
+    "tslib": "2.8.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.1",
+    "vue-tsc": "^3.3.9"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
+  }
+}

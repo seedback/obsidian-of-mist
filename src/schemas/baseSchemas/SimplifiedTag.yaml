@@ -1,0 +1,42 @@
+# JSON Schema in YAML format for Mist-powered SimplifiedTag
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.simplified-tag.schema.json-1.0.0
+title: Mist-powered SimplifiedTag
+description: Schema for validating Mist-powered SimplifiedTag Data
+
+type: object
+allOf:
+  - $ref: mist.common-element-fields.schema.json-1.0.0
+  - type: object
+    properties:
+      question:
+        $ref: mist.question-letter.schema.json-1.0.0
+        description: A one-letter capitalized string that describes what question made this tag.
+      text:
+        type: string
+        description: The text of the tag. Required.
+      burned:
+        type: boolean
+        description: Whether the tag is burned.
+        errorMessage:
+          type: Burned must be true or false.
+      tier:
+        type: integer
+        minimum: 0
+        description: |
+          The tier of the tag, only used for statuses, spectrums, and limits.
+        errorMessage:
+          type: Tier must be an integer.
+          minimum: Tier cannot be lower than 0.
+      sub-tier:
+        type: integer
+        minimum: 0
+        description: |
+          The sub-tier of a status. Only used in City of Mist statuses.
+          If higher than the tier, it will be reset to 0 and tier will be bumped by one.
+        errorMessage:
+          type: Sub-tier must be an integer.
+          minimum: Sub-tier cannot be lower than 0.
+
+    required: 
+      - text

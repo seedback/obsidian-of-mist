@@ -1,0 +1,42 @@
+.callout[data-callout="mist-note"] {
+  background-color: #e0d9c1;
+  box-shadow: #00000050 0px 0px 8px 1px;
+  margin: 0.5em 1em !important;
+  color: black;
+  --callout-padding: 0.5rem;
+  --callout-radius: 10px;
+  --list-marker-color: black;
+
+  .callout-title {
+    --callout-title-padding: 0.25rem 0.65rem;
+    --callout-title-size: 1.65em;
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    background-color: #514a49;
+    border: 3px solid #514a49;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+
+    .callout-icon {
+      display: none;
+    }
+
+    .callout-fold {
+      color: #e0d9c1;
+    }
+
+    .callout-title-inner {
+      color: #e0d9c1;
+    }
+  }
+
+  .callout-content {
+    --p-spacing: 0.5rem;
+    --callout-content-padding: 0rem 0.65rem;
+    font-family: "Roboto", sans-serif;
+    border: 3px solid #514a49;
+    border-radius: 0 0 5px 5px;
+    border-top: none;
+  }
+}

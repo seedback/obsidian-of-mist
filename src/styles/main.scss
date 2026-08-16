@@ -1,0 +1,102 @@
+@use "@styles/callouts/index.scss" as callouts;
+@use "@styles/blocks/index.scss" as blocks;
+
+/* Global variables for obsidian-of-mist */
+body {
+  /* Tag Variables */
+  --mist--power-tag-color: 239 171 0;
+  --mist--weakness-tag-color: 235 118 0;
+  --mist--status-tag-color: 79 198 0;
+  --mist--limit-tag-color: 209 59 0;
+  --mist--story-tag-color: var(--mist--power-tag-color);
+
+  --mist--tag-background-alpha: 0.4;
+
+  --mist--power-tag-background: rgb(var(--mist--power-tag-color) / var(--mist--tag-background-alpha));
+  --mist--weakness-tag-background: rgb(var(--mist--weakness-tag-color) / var(--mist--tag-background-alpha));
+  --mist--status-tag-background: rgba(var(--mist--status-tag-color) / var(--mist--tag-background-alpha));
+  --mist--limit-tag-background: rgba(var(--mist--limit-tag-color) / var(--mist--tag-background-alpha));
+  --mist--story-tag-background: rgba(var(--mist--story-tag-color) / var(--mist--tag-background-alpha));
+
+  /* Theme Variables */
+  --mist--theme-city-accent: 81 74 73;
+  --mist--theme-city-accent-bright: 255 255 255;
+  --mist--theme-city-accent-2: 173 63 0;
+  --mist--theme-city-text-color: var(--mist--theme-city-accent);
+  --mist--theme-city-background-color: 190 195 180;
+  --mist--theme-city-border-color: var(--mist--theme-city-text-color);
+  --mist--theme-otherscape-color: 0 0 255;
+  --mist--theme-otherscape-border-color: 0 0 255;
+  --mist--theme-legend-color: 0 128 0;
+  --mist--theme-legend-border-color: 0 128 0;
+
+  --mist--theme-background-alpha: var(--mist--tag-background-alpha);
+
+  --mist--theme-city-background: rgb(var(--mist--theme-city-background-color));
+  --mist--theme-city-border: color-mix(in srgb, rgb(var(--mist--theme-city-border-color) / var(--mist--theme-background-alpha)) 30%, var(--mist--theme-city-background) 70%);
+  --mist--theme-city-text: rgb(var(--mist--theme-city-text-color));
+  --mist--theme-city-icon-background: var(--mist--theme-city-background);
+  --mist--theme-city-icon-background-bright: rgb(var(--mist--theme-city-accent-bright) / 0.6);
+  --mist--theme-otherscape-background: rgb(var(--mist--theme-otherscape-color) / var(--mist--theme-background-alpha));
+  --mist--theme-otherscape-border: rgb(var(--mist--theme-border-otherscape-color) / var(--mist--theme-background-alpha));
+  --mist--theme-legend-background: rgb(var(--mist--theme-legend-color) / var(--mist--theme-background-alpha));
+  --mist--theme-legend-border: rgb(var(--mist--theme-legend-border-color) / var(--mist--theme-background-alpha));
+
+  --mist--theme-component-margin: 0.5em 0;
+
+  --mist--theme-underline-dashed-dash-width: 0.35em;
+  --mist--theme-underline-dashed-dash-spacing: 0.35em;
+  --mist--theme-dashed-underline-thickness: 1px;
+
+  --mist--theme-city-underline-color: var(--mist--theme-city-text);
+  --mist--theme-city-dashed-underline-background-image:
+  repeating-linear-gradient(
+    to right,
+    var(--mist--theme-city-underline-color) 0,
+    var(--mist--theme-city-underline-color)
+      var(--mist--theme-underline-dashed-dash-width),
+    transparent
+      var(--mist--theme-underline-dashed-dash-width),
+    transparent
+      calc(
+        var(--mist--theme-underline-dashed-dash-width) +
+        var(--mist--theme-underline-dashed-dash-spacing)
+      )
+  );
+
+  --mist--theme-city-dashed-underline: var(--mist--theme-city-dashed-underline-background-image) bottom / 100% var(--mist--theme-dashed-underline-thickness) no-repeat;
+
+  /* Same dashes, but tiled full-height; pair with --mist--theme-city-dashed-underline-repeat-mask to confine each tile to one line */
+  --mist--theme-city-dashed-underline-repeating: var(--mist--theme-city-dashed-underline-background-image) repeat;
+  --mist--theme-city-dashed-underline-repeat-mask: repeating-linear-gradient(to bottom,
+      transparent 0,
+      transparent calc(1lh - var(--mist--theme-dashed-underline-thickness)),
+      black calc(1lh - var(--mist--theme-dashed-underline-thickness)),
+      black 1lh) 0 0 / 100% 1lh repeat-y;
+  
+  --mist--theme-city-tracker-color: rgb(var(--mist--theme-city-text-color) / 0.4);
+
+  --mist--theme-title-highlight-gradient: linear-gradient(to right,
+      rgb(var(--mist--theme-city-accent) / 0.2),
+      color-mix(in srgb, rgb(var(--mist--theme-city-accent) / 0.2), transparent) 75%,
+      transparent);
+  --mist--theme-content-highlight-gradient: linear-gradient(to right,
+      rgb(255 255 255 / 0.3),
+      color-mix(in srgb, rgb(255 255 255 / 0.3), transparent) 80%,
+      transparent);
+
+  /* Icon Variables*/
+  --icon-size: 18px;
+}
+
+.mist--tag-wrapper {
+  display: inline;
+  margin: 0;
+}
+
+.cm-content .mist-tag-hidden-text {
+  display: inline-flex;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}

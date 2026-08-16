@@ -1,0 +1,29 @@
+{
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
+    "compilerOptions": {
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "module": "ESNext",
+        "target": "ES2022",
+        "allowJs": true,
+        "noImplicitAny": true,
+        "moduleResolution": "bundler",
+        "importHelpers": true,
+        "isolatedModules": true,
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": false,
+        "jsx": "preserve",
+        "lib": ["DOM", "ES2022"],
+        "paths": {
+            "@/*": ["./*"],
+            "@src/*": ["./src/*"],
+            "@styles/*": ["./src/styles/*"],
+            "@root/*": ["./*"],
+            "@model/*": ["./src/model/*"],
+            "@utils/*": ["./src/utils/*"],
+            "@components/*": ["./src/components/*"],
+            "@schemas/*": ["./src/schemas/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts"],
+}

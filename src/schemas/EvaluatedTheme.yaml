@@ -1,0 +1,18 @@
+# JSON Schema in YAML format for Mist-powered EvaluatedTheme
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.evaluated-theme.schema.json-1.0.0
+title: Mist-powered EvaluatedTheme
+description: Schema for validating Mist-powered EvaluatedTheme Data
+
+type: object
+allOf:
+  - $ref: mist.theme.schema.json-1.0.0
+  
+unevaluatedProperties:
+  not: true
+  errorMessage: |
+    Unknown theme property: ${0#}.
+    Allowed properties: might, type, themebook, title, tags, power-tags, weakness-tags, story-tags,
+    [identity, mystery, ritual, itch, quest], [attention, upgrade, improve], [crack, fade, decay, abandon],
+    milestone, slow-and-steady.
+    Properties in square brackets (eg. []) are mutually exclusive, and aliases of eachother; only one alias from each group may be used.
