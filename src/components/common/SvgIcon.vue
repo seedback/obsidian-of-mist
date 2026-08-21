@@ -23,8 +23,6 @@ const props = defineProps<{
   fill_color?: string;
 }>();
 
-console.log("drop-shadow on icon", props.drop_shadow);
-
 const iconHtml = computed(() => {
   const icon = getIcon(props.icon_name);
 
@@ -42,7 +40,7 @@ const iconHtml = computed(() => {
         `filter: drop-shadow(${offset_x} ${offset_y} ${standard_deviation ?? 0} ${css_color ?? 'black'});`,
       );
     }
-    if(props.fill_color){
+    if (props.fill_color) {
       styles.push(`fill: ${props.fill_color};`);
     }
 

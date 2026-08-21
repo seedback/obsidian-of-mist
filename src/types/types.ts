@@ -5,12 +5,12 @@ export enum System {
 }
 
 export enum TagType {
-  power,
-  weakness,
-  status,
-  spectrum,
-  limit,
-  story,
+  power = "power",
+  weakness = "weakness",
+  status = "status",
+  spectrum = "spectrum",
+  limit = "limit",
+  story = "story",
 }
 
 export enum ThemeType {

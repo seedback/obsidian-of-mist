@@ -2,33 +2,36 @@ import { Plugin } from "obsidian";
 import { genericComponentProcessor } from "./ComponentProcessor";
 
 import ThemeCard from "@components/themes/ThemeCard.vue";
+import ThemeCollection from "@components/themes/ThemeCollection.vue";
+import DangerProfileCollection from "@components/dangerProfile/DangerProfileCollection.vue";
 
 import { Theme as ThemeModel } from "@model/Theme";
-import { ThemeCollection as ThemeCollectionModel } from "@model/themeCollection";
-import ThemeCollection from "@components/themes/ThemeCollection.vue";
+import { ThemeCollection as ThemeCollectionModel } from "@model/ThemeCollection";
+import { DangerProfileCollection as DangerProfileCollectionModel } from "@model/DangerProfileCollection";
+
 
 export function registerElements(plugin: Plugin) {
-  const story_theme_processor = new genericComponentProcessor(
-    plugin,
-    ThemeCard,
-    ThemeModel,
-    "Story Theme",
-    true
-  );
-  plugin.registerMarkdownCodeBlockProcessor(
-    "mist-story-theme",
-    story_theme_processor.handler
-  )
-
-  const theme_collection_processor = new genericComponentProcessor(
+  const theme_processor = new genericComponentProcessor(
     plugin,
     ThemeCollection,
     ThemeCollectionModel,
-    "Theme Collection",
+    "Theme",
     true
   );
   plugin.registerMarkdownCodeBlockProcessor(
-    "mist-theme-collection",
-    theme_collection_processor.handler
+    "mist-theme",
+    theme_processor.handler
+  )
+
+  const danger_profile_processor = new genericComponentProcessor(
+    plugin,
+    DangerProfileCollection,
+    DangerProfileCollectionModel,
+    "Danger Profile",
+    true
+  );
+  plugin.registerMarkdownCodeBlockProcessor(
+    "mist-danger-profile",
+    danger_profile_processor.handler
   )
 }

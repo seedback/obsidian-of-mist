@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import ThemeCard from './ThemeCard.vue';
-import { ThemeCollection as ThemeCollectionModel } from '@model/themeCollection';
+import { ThemeCollection as ThemeCollectionModel } from '@/src/model/ThemeCollection.ts';
 const props = defineProps<{
   model?: ThemeCollectionModel
 }>();
@@ -20,6 +20,7 @@ const props = defineProps<{
 <style lang="scss">
 .mist--theme-collection{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  font-size: var(--font-text-size);
 }
 </style>

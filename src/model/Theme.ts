@@ -10,7 +10,7 @@ import { Tag } from '@model/Tag';
 import { validateModelDataWithSchema } from '@utils/ValidateModelData';
 import { CommonElementFields } from './CommonElementFields';
 
-import schema from '@schemas/EvaluatedTheme.yaml';
+import schema from '@schemas/baseSchemas/Theme.yaml';
 
 export class Theme extends CommonElementFields {
   type?: ThemeType;
@@ -32,19 +32,29 @@ export class Theme extends CommonElementFields {
   }
 
   public static parse(plugin: ObsidianOfMistPlugin, data: any): Theme {
-    console.log(data);
-    let tag_list = Tag.parseArray(plugin, data.tags ?? []);
+    let tag_list = Tag.parseArray(plugin, data.tags ?? [], {
+      system: data.system,
+    });
 
     tag_list = tag_list.concat(
-      Tag.parseArray(plugin, data['power-tags'] ?? [], TagType.power),
+      Tag.parseArray(plugin, data['power-tags'] ?? [], {
+        system: data.system,
+        type: TagType.power,
+      }),
     );
 
     tag_list = tag_list.concat(
-      Tag.parseArray(plugin, data['weakness-tags'] ?? [], TagType.weakness),
+      Tag.parseArray(plugin, data['weakness-tags'] ?? [], {
+        system: data.system,
+        type: TagType.weakness,
+      }),
     );
 
     tag_list = tag_list.concat(
-      Tag.parseArray(plugin, data['story-tags'] ?? [], TagType.story),
+      Tag.parseArray(plugin, data['story-tags'] ?? [], {
+        system: data.system,
+        type: TagType.story,
+      }),
     );
 
     const improve: number | undefined =

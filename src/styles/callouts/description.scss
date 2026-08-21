@@ -1,0 +1,28 @@
+@use "@styles/fonts/fira-sans-extra-condensed.scss";
+.callout[data-callout='mist-description'],
+.callout[data-callout='mist-description-scene'] {
+  --callout-color: 0, 0, 0;
+  --callout-padding: 1em;
+  --callout-icon: "search";
+  background-color: unset;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.9em;
+  color: var(--text-normal);
+
+  .callout-title-inner {
+    font-weight: normal;
+    line-height: var(--line-height-normal);
+    color: var(--text-normal);
+  }
+
+  .callout-title {
+    --callout-title-size: 1.65em;
+    font-family: "Fira Sans Extra Condensed";
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+}
+
+.callout[data-callout='mist-description-scene'] {
+  --callout-icon: "clapperboard";
+}

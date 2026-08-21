@@ -42,9 +42,9 @@ allOf:
             tier: false
             sub-tier: false
 
-unevaluatedProperties:
-  const: false
-  errorMessage: |
+unevaluatedProperties: false
+errorMessage:
+  unevaluatedProperties: |
     Tag object must not have extra properties.
     Allowed properties: text, type, question, burned, tier, sub-tier, system.
 

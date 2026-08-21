@@ -14,10 +14,15 @@ import {
 } from '@utils/JsonSchemaValidator';
 
 import commonElementFieldsSchema from '@schemas/baseSchemas/CommonElementFields.yaml';
+import dangerProfileSchema from '@schemas/baseSchemas/DangerProfile.yaml';
+import dangerSpectrumSchema from '@schemas/baseSchemas/DangerSpectrum.yaml';
+import descriptionSchema from '@schemas/baseSchemas/Description.yaml';
+import namedFeatureSchema from '@schemas/baseSchemas/NamedFeature.yaml';
 import questionLetterSchema from '@schemas/baseSchemas/QuestionLetter.yaml';
 import simplifiedTagSchema from '@schemas/baseSchemas/SimplifiedTag.yaml';
 import tagSchema from '@schemas/baseSchemas/Tag.yaml';
 import themeSchema from '@schemas/baseSchemas/Theme.yaml';
+
 
 export default class ObsidianOfMistPlugin extends Plugin {
   settings: ObsidianOfMistPluginSettings = DEFAULT_SETTINGS;
@@ -46,6 +51,10 @@ export default class ObsidianOfMistPlugin extends Plugin {
   private initializeSchemas() {
     const dependencySchemas = [
       this.createSchemaInitializer(commonElementFieldsSchema),
+      this.createSchemaInitializer(dangerProfileSchema),
+      this.createSchemaInitializer(dangerSpectrumSchema),
+      this.createSchemaInitializer(descriptionSchema),
+      this.createSchemaInitializer(namedFeatureSchema),
       this.createSchemaInitializer(questionLetterSchema),
       this.createSchemaInitializer(simplifiedTagSchema),
       this.createSchemaInitializer(tagSchema),

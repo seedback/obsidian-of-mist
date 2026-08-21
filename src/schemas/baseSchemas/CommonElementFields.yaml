@@ -2,7 +2,10 @@
 $schema: https://json-schema.org/draft/2019-09/schema
 $id: mist.common-element-fields.schema.json-1.0.0
 title: Mist-powered Common Element Fields
-description: Schema for validating Mist-powered Common Element Fields Data
+description: |
+  Decides the style used by the element.
+  Supported values are: "city", "otherscape" and "legend".
+  If empty or not defined, the plugin's "Default System" setting is used.
 
 type: object
 properties: 

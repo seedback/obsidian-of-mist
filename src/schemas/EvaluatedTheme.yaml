@@ -4,15 +4,34 @@ $id: mist.evaluated-theme.schema.json-1.0.0
 title: Mist-powered EvaluatedTheme
 description: Schema for validating Mist-powered EvaluatedTheme Data
 
-type: object
-allOf:
-  - $ref: mist.theme.schema.json-1.0.0
+oneOf:
+  # Single theme
+  - allOf:
+      - $ref: mist.theme.schema.json-1.0.0
+      - not:
+          required:
+            - themes
+
+  # Theme collection
+  - type: object
+    properties:
+      themes:
+        type: array
+        items:
+          $ref: mist.theme.schema.json-1.0.0
+    required:
+      - themes
+
+  # Bare list of themes
+  - type: array
+    items:
+      $ref: mist.theme.schema.json-1.0.0
   
-unevaluatedProperties:
-  not: true
-  errorMessage: |
-    Unknown theme property: ${0#}.
-    Allowed properties: might, type, themebook, title, tags, power-tags, weakness-tags, story-tags,
-    [identity, mystery, ritual, itch, quest], [attention, upgrade, improve], [crack, fade, decay, abandon],
-    milestone, slow-and-steady.
-    Properties in square brackets (eg. []) are mutually exclusive, and aliases of eachother; only one alias from each group may be used.
+unevaluatedProperties: false
+errorMessage:
+  unevaluatedProperties: |
+    Theme contains an unknown property.
+    Allowed properties: might, type, themebook, title, tags, power-tags,
+    weakness-tags, story-tags, identity, mystery, ritual, itch, quest,
+    attention, upgrade, improve, crack, fade, decay, abandon,
+    milestone, slow-and-steady, system.

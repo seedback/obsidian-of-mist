@@ -8,8 +8,7 @@ type: object
 allOf:
   - $ref: mist.tag.schema.json-1.0.0
   
-unevaluatedProperties:
-  const: false
-  errorMessage: |
+unevaluatedProperties: false
+errorMessage: |
     Tag object must not have extra properties.
     Allowed properties: text, type, question, burned, tier, sub-tier, system.

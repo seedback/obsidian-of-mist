@@ -1,10 +1,13 @@
+// If the data-callout name is ever changed, make sure to update at the bottom too
+@use "@styles/fonts/averia-serif-libre.scss";
+
 .callout[data-callout='mist-move'] {
   --callout-color: 0 0 0;
   --mist-callout-padding-side: 1em;
   font-family: 'Averia Serif Libre';
   background-color: rgb(241 233 161);
-  padding: 0 var(--mist-callout-padding-side) 0.5em var(--mist-callout-padding-side);
-  margin: 50px 0 0.5em 0 !important;
+  padding: 0 var(--mist-callout-padding-side) 0 var(--mist-callout-padding-side);
+  margin: 32px 0 0 0 !important;
   border-radius: 0 0 3px 3px;
   position: relative;
   overflow: visible;
@@ -32,6 +35,7 @@
 
   .callout-content {
     position: relative;
+    letter-spacing: -0.025em;
     z-index: -1;
     p {
       margin: 0;
@@ -86,4 +90,10 @@
       content: none !important;
     }
   }
+
+  
+}
+
+.markdown-source-view .callout[data-callout='mist-move'] {
+  margin-top: 56px !important;
 }

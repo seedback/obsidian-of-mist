@@ -1,0 +1,33 @@
+# JSON Schema in YAML format for Mist-powered Spectrums
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.danger-spectrum.schema.json-1.0.0
+title: Mist-powered Spectrums
+description: |
+  Schema for validating a collection of Spectrums or Limits.
+  Spectrums and Limits use the same shorthand syntax as tiered Tags.
+  Tier 0 represents immunity.
+  "immune", "-", and "~" are shorthand for tier 0.
+
+type: array
+
+items:
+  anyOf:
+    # Normal SimplifiedTag syntax
+    - $ref: mist.simplified-tag.schema.json-1.0.0
+
+    # Shorthand syntax:
+    # - Hurt or Subdue: 5
+    # - Convince: immune
+    - type: object
+      minProperties: 1
+      maxProperties: 1
+      additionalProperties:
+        oneOf:
+          - type: integer
+            minimum: 0
+
+          - type: string
+            enum:
+              - immune
+              - "-"
+              - "~"

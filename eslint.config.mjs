@@ -28,6 +28,12 @@ const namingConventionRule = [
     format: null,
   },
 
+  // object literal functions can also be snake_case
+  {
+    selector: 'objectLiteralMethod',
+    format: ['camelCase', 'snake_case'],
+  },
+
   // functions and methods: camelCase only
   {
     selector: ['function', 'method'],

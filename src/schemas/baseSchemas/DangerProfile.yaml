@@ -1,0 +1,66 @@
+# JSON Schema in YAML format for Mist-powered Danger Profile
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.danger-profile.schema.json-1.0.0
+title: Mist-powered Danger Profile
+description: Schema for validating Mist-powered Danger Profile Data
+
+type: object
+allOf:
+  - $ref: mist.common-element-fields.schema.json-1.0.0
+  - type: object
+    properties:
+      name:
+        type: string
+        minLength: 1
+        description: The name of the Danger.
+
+      danger-rating:
+        oneOf:
+          - type: integer
+            minimum: 0
+            description: The Danger Rating of the Danger.
+          - type: array
+            items:
+              type: integer
+              minimum: 0
+              description: The Danger Ratings of the Danger.
+      
+      is-mythos-power:
+        type: boolean
+        description: Whether it is a mythos power set, if so a plus should be shown before each set of stars.
+
+      description:
+        $ref: mist.description.schema.json-1.0.0
+
+      spectrums:
+        $ref: mist.danger-spectrum.schema.json-1.0.0
+
+      limits:
+        $ref: mist.danger-spectrum.schema.json-1.0.0
+
+      custom-moves:
+        type: array
+        items:
+          anyOf:
+            - $ref: mist.named-feature.schema.json-1.0.0
+
+            - type: object
+              minProperties: 1
+              maxProperties: 1
+              additionalProperties:
+                $ref: mist.description.schema.json-1.0.0
+
+      hard-moves:
+        type: array
+        items:
+          $ref: mist.description.schema.json-1.0.0
+        description: Hard moves available to the Danger.
+
+      soft-moves:
+        type: array
+        items:
+          $ref: mist.description.schema.json-1.0.0
+        description: Soft moves available to the Danger.
+
+    required:
+      - name

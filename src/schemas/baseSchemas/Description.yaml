@@ -1,0 +1,9 @@
+# JSON Schema in YAML format for Mist-powered Description
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.description.schema.json-1.0.0
+title: Mist-powered Description
+description: |
+  Schema for validating descriptive text used by Mist-powered elements.
+  Descriptions may contain Markdown and Mist-powered inline syntax.
+
+type: string

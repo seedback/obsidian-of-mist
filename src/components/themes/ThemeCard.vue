@@ -99,6 +99,7 @@ const tag_lists = computed(() => {
   row-gap: 0.5em;
   border-radius: var(--radius-s);
   width: 100%;
+  font-size: var(--font-text-size);
 
   &-border {
     height: fit-content;

@@ -63,6 +63,7 @@ const icon_classes = (type: ThemeType) => {
   background-color: rgb(var(--mist--theme-city-accent) / 0.2);
   height: var(--mist--theme-header-height);
   border-radius: var(--radius-s) var(--radius-s) 0 0;
+  font-size: var(--font-text-size);
 
   &-type {
     &.city {

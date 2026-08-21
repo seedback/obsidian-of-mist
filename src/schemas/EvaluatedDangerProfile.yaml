@@ -1,0 +1,50 @@
+# JSON Schema in YAML format for Mist-powered EvaluatedDangerProfile
+$schema: https://json-schema.org/draft/2019-09/schema
+$id: mist.evaluated-danger-profile.schema.json-1.0.0
+title: Mist-powered EvaluatedDangerProfile
+description: Schema for validating Mist-powered EvaluatedDangerProfile Data
+
+oneOf:
+  # Single theme
+  - allOf:
+      - $ref: mist.danger-profile.schema.json-1.0.0
+      - not:
+          required:
+            - danger-profiles
+            - profiles
+
+  # Theme collection
+  - type: object
+    properties:
+      danger-profiles:
+        type: array
+        items:
+          $ref: mist.danger-profile.schema.json-1.0.0
+    required:
+      - danger-profiles
+    not:
+      required:
+        - profiles
+  - type: object
+    properties:
+      profiles:
+        type: array
+        items:
+          $ref: mist.danger-profile.schema.json-1.0.0
+    required:
+      - profiles
+    not:
+      required:
+        - danger-profiles
+
+  # Bare list of danger-profiles
+  - type: array
+    items:
+      $ref: mist.danger-profile.schema.json-1.0.0
+  
+unevaluatedProperties: false
+errorMessage:
+  unevaluatedProperties: |
+    Danger Profile must not have unknown properties.
+    Allowed properties: system, name, danger-rating, description, spectrums, limits,
+    custom-moves, hard-moves, soft-moves.

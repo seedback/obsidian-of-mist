@@ -186,6 +186,9 @@ allOf:
         description: |
           Defines wether the veteran improvement slow or steady (or Diligent Drudge in Legend in the mist)
           This will make the theme have 5 tracker boxes per tracker
+      improvements:
+        type: array
+        
 
     allOf:
       # Allow zero or one identity-style property

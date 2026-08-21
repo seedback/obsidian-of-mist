@@ -18,6 +18,7 @@
     />
   </span>
 </template>
+
 <script setup lang="ts">
 import SvgIcon from './SvgIcon.vue';
 
@@ -43,9 +44,8 @@ const props = defineProps<{
   is_marked?: boolean;
   offset?: string;
 }>();
-
-console.log(props.icon_drop_shadow);
 </script>
+
 <style lang="scss">
 .mist--svg-icon-markable {
   display: inline-grid;
