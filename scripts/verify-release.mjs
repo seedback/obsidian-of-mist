@@ -11,20 +11,13 @@ const versionFiles = new Set([
   "versions.json",
 ]);
 
-const buildFiles = new Set([
-  "main.js",
-  "styles.css",
-]);
+const allowedFiles = versionFiles;
 
 const releaseFiles = [
   "manifest.json",
   "main.js",
   "styles.css",
 ];
-
-const allowBuildOutput = process.argv.includes(
-  "--allow-build-output",
-);
 
 function git(...args) {
   return execFileSync(
@@ -98,16 +91,6 @@ for (const file of releaseFiles) {
     throw new Error(
       `${file} is empty.`,
     );
-  }
-}
-
-const allowedFiles = new Set(
-  versionFiles,
-);
-
-if (allowBuildOutput) {
-  for (const file of buildFiles) {
-    allowedFiles.add(file);
   }
 }
 

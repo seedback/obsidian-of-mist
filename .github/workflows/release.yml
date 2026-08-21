@@ -84,28 +84,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Verify build
-        run: node scripts/verify-release.mjs --allow-build-output
-
-      # ─────────────────────────────────────────────
-      # Preserve release files
-      # ─────────────────────────────────────────────
-
-      - name: Prepare release files
-        run: |
-          mkdir -p "$RUNNER_TEMP/release"
-
-          cp manifest.json "$RUNNER_TEMP/release/manifest.json"
-          cp main.js "$RUNNER_TEMP/release/main.js"
-          cp styles.css "$RUNNER_TEMP/release/styles.css"
-
-      # main.js and styles.css are build output.
-      # They belong in the GitHub release, not in the version commit.
-      - name: Restore build output
-        run: |
-          git restore main.js styles.css
-
-      - name: Verify version commit
+      - name: Verify release
         run: node scripts/verify-release.mjs
 
       # ─────────────────────────────────────────────
@@ -155,9 +134,9 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           gh release create "$VERSION" \
-            "$RUNNER_TEMP/release/manifest.json" \
-            "$RUNNER_TEMP/release/main.js" \
-            "$RUNNER_TEMP/release/styles.css" \
+            manifest.json \
+            main.js \
+            styles.css \
             --verify-tag \
             --title "$VERSION" \
             --generate-notes
