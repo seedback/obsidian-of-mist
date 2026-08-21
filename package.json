@@ -9,6 +9,8 @@
     "dev": "vite build --mode development",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
+    "release:prepare": "node scripts/prepare-release.mjs",
+    "release:verify": "node scripts/verify-release.mjs",
     "version": "node version-bump.mjs && git add manifest.json versions.json"
   },
   "keywords": [],
