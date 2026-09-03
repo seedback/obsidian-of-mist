@@ -45,11 +45,15 @@ const content = computed(() => {
 
   props.spectrums.forEach((spectrum, index) => {
     str += spectrum.text;
-    str += " ";
-    str += spectrum.tier;
-    
+    str += ' ';
+    if (spectrum.tier == 0) {
+      str += '—';
+    } else {
+      str += spectrum.tier;
+    }
+
     if (index < props.spectrums.length - 1) {
-      str += " / "
+      str += ' / ';
     }
   });
 

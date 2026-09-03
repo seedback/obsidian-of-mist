@@ -3,6 +3,9 @@ import type { TFile } from 'obsidian';
 
 export type ParsedTextToken =
   | {
+      type: 'newline';
+    }
+  | {
       type: 'text';
       text: string;
     }
@@ -52,7 +55,7 @@ export function parseText(
 ): ParsedTextToken[] {
   const tokens: ParsedTextToken[] = [];
 
-  const pattern = /==([+\-%#@])([\s\S]*?)==|\[\[([^\]]+?)\]\]/g;
+  const pattern = /==([+\-%#@])([\s\S]*?)==|\[\[([^\]]+?)\]\]|(\\n)/g;
 
   let lastIndex = 0;
 
@@ -73,8 +76,12 @@ export function parseText(
         type: TYPE_BY_MARKER[marker],
         text: match[2],
       });
-    } else {
+    } else if (match[3] !== undefined) {
       tokens.push(parseWikilink(plugin, match[3], sourcePath));
+    } else {
+      tokens.push({
+        type: 'newline',
+      });
     }
 
     lastIndex = index + match[0].length;
@@ -86,7 +93,7 @@ export function parseText(
       text: source.slice(lastIndex),
     });
   }
-  
+
   return tokens;
 }
 

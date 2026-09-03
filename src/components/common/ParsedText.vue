@@ -8,6 +8,7 @@
       )"
       :key="index"
     >
+      <br v-if="token.type == 'newline'">
       <span v-if="token.type == 'text'">{{ token.text }}</span>
       <mist-tag
         v-if="token.type == 'power'"

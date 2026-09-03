@@ -8,6 +8,7 @@
   font-family: 'Courier Prime', monospace;
   font-size: 0.9em;
   color: var(--text-normal);
+  max-width: calc(var(--file-line-width) / 2);
 
   .callout-title-inner {
     font-weight: normal;
